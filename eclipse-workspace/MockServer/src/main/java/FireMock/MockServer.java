@@ -8,11 +8,24 @@ public class MockServer {
 		
 		 public MockServer(int port) {
 			this.port=port;
-			this.mappings=MappingLoader.loadMappings("/MockServer/src/main/resources/mappings");
+			this.mappings=MappingLoader.loadMappings("src/main/resources/mappings");
+			System.out.println("Loaded " + mappings.size() + " mappings");
+			for(Mapping m : mappings) {
+			    System.out.println("Mapping URL: " + m.getRequest().getUrl());
+			    System.out.println("Mapping method: " + m.getRequest().getMethod());
+			    System.out.println("BodyContains: " + m.getRequest().getBodyContains());
+			}
+
 		}
 		public void start() {
 			Spark.port(port);
+			
+			 Spark.get("/", (req, res) -> "Mock Server is running!");
+
+		        
 			Spark.post("/*", (req,res)->{
+				
+				
 				Mapping match=RequestMatcher.findMatch(req, mappings);
 				if(match != null) {
 					res.status(match.getResponse().getStatus());
@@ -24,6 +37,7 @@ public class MockServer {
 				}
 			});
 
+			Spark.init();
     }
 }
 
