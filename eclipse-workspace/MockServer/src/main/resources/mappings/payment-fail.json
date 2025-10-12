@@ -1,0 +1,7 @@
+{
+  "request": { "method": "POST", "url": "/payment" },
+  "response": {
+    "status": 400,
+    "body": "{ \"message\": \"Invalid card details\", \"status\": \"FAILED\" }"
+  }
+}

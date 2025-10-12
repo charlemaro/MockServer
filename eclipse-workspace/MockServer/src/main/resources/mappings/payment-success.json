@@ -1,0 +1,11 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/payment",
+    "bodyContains": "1234567890123456"
+  },
+  "response": {
+    "status": 200,
+    "body": "{ \"message\": \"Payment successful\", \"status\": \"SUCCESS\" }"
+  }
+}
