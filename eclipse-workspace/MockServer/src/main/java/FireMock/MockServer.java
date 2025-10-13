@@ -24,8 +24,6 @@ public class MockServer {
 
 		        
 			Spark.post("/*", (req,res)->{
-				
-				
 				Mapping match=RequestMatcher.findMatch(req, mappings);
 				if(match != null) {
 					res.status(match.getResponse().getStatus());
@@ -33,7 +31,7 @@ public class MockServer {
 					return match.getResponse().getBody();
 				}else {
 					res.status(400);
-					return "{\"error\":\"No matcching record found\"}";
+					return "{\"error\":\"No matching record found\"}";
 				}
 			});
 
